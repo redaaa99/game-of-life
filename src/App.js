@@ -3,8 +3,8 @@ import './App.css';
 import $ from 'jquery';
 
 let events = {};
-let height= 10;
-let width = 10;
+let height= 20;
+let width = 20;
 let interval;
 let delay = 100;
 
@@ -92,81 +92,16 @@ class App extends Component {
     clearGen () {
         this.setState({generationCount : 0});
     }
-    changeWidth () {
-        if((this.refs.inputWidth.value<10) || (this.refs.inputWidth.value>50))
-        {
-            width = 10;
-
-        }
-        else
-        {
-            width = this.refs.inputWidth.value;
-        }
-        cells  = width*height;
-        boardStyle = {
-            margin: "0 auto",
-            width: ""+22*height+"px",
-            height: ""+22*width+"px  ",
-            display: "flex",
-            flexWrap: "wrap",
-            border: "1px black solid",
-            backgroundColor: "#330033",
-            marginBottom : "20px"
-        };
-        emptyMatrix= [];
-        matrix=[];
-        for(let i=0;i<cells;i++)
-        {
-            matrix.push({alive:(Math.random() > .5)});
-            emptyMatrix.push({alive:false});
-        }
-
-        this.setState({generationCount : 0});
-    }
-    changeHeight () {
-        if((this.refs.inputHeight.value<10) || (this.refs.inputHeight.value>50))
-        {
-            height = 10;
-        }
-        else
-        {
-            height = this.refs.inputHeight.value;
-        }
-        cells  = width*height;
-        boardStyle = {
-            margin: "0 auto",
-            width: ""+22*height+"px",
-            height: ""+22*width+"px  ",
-            display: "flex",
-            flexWrap: "wrap",
-            border: "1px black solid",
-            backgroundColor: "#330033",
-            marginBottom : "20px"
-        };
-        emptyMatrix= [];
-        matrix=[];
-        for(let i=0;i<cells;i++)
-        {
-            matrix.push({alive:false});
-            emptyMatrix.push({alive:false});
-        }
-        this.setState({generationCount : 0});
-
-    }
     render() {
 
         return (
             <div>
-              <h2>Welcome to game of life</h2>
-                Width:&nbsp;&nbsp;
-                <input type="number" ref="inputWidth" placeholder="10" onChange={this.changeWidth.bind(this)} />&nbsp;&nbsp;&nbsp;Height:&nbsp;&nbsp;
-                <input type="number" ref="inputHeight" placeholder="10" onChange={this.changeHeight.bind(this)}  />
-                <p>Generation number : {this.state.generationCount} </p>
+                <h2>Welcome to game of life</h2><h3>Press Space for single move</h3><p>Generation number : {this.state.generationCount} </p>
                 <Board handleInc={this.addGen.bind(this)} clearGeneration={this.clearGen.bind(this)} />
             </div>
         );
-      }
     }
+}
 
 class Board extends Component{
     constructor(props) {
